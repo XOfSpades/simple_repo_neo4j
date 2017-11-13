@@ -2,8 +2,10 @@ use Mix.Config
 
 config :bolt_sips, Bolt,
   url: 'localhost', # default port considered to be: 7687
+  port: 7687,
   pool_size: 5,
   max_overflow: 1,
+  basic_auth: [username: "neo4j", password: "neo4j"],
   # retry the request, in case of error - in the example below the retry will
   # linearly increase the delay from 150ms following a Fibonacci pattern,
   # cap the delay at 15 seconds (the value defined by the default `:timeout`

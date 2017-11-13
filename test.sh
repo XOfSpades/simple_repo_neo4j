@@ -6,4 +6,4 @@ docker-compose build simple-repo-neo4j-test-s
 
 docker-compose run simple-repo-neo4j-test-s
 
-docker-compose down
+# docker-compose down 

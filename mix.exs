@@ -20,7 +20,10 @@ defmodule SimpleRepoNeo4j.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger, :bolt_sips]]
+    [
+      applications: [:logger, :bolt_sips],
+      mod: {SimpleRepoNeo4j.Application, []}
+    ]
   end
 
   defp elixirc_paths(:prod), do: ["lib"]
@@ -36,7 +39,8 @@ defmodule SimpleRepoNeo4j.Mixfile do
 
   defp deps do
     [
-      {:bolt_sips, git: "https://github.com/xofspades/bolt_sips"},
+      {:bolt_sips, "~> 0.4.11"},
+      # {:bolt_sips, git: "https://github.com/xofspades/bolt_sips"},
       {:excoveralls, "~> 0.7.5", only: :test}
     ]
   end

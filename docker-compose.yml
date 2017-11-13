@@ -8,6 +8,11 @@ services:
   simple-repo-neo4j-db-test-s:
     image: neo4j:3.3.0
     container_name: simple-repo-neo4j-db-test-c
+    environment:
+      - NEO4J_AUTH=none # For using the browser inteface
+    ports:
+      - "7687:7687"
+      - "7474:7474"
     volumes:
       - simple-repo-neo4j-db-data-test-v:/var/lib/postgresql/data
     networks:
