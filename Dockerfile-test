@@ -1,0 +1,33 @@
+FROM bitwalker/alpine-elixir:1.5.1
+
+MAINTAINER bernhard.stoecker@recogizer.de
+
+RUN apk add --update bash && apk add make && rm -rf /var/cache/apk/*
+
+EXPOSE 8080
+
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+RUN mkdir /neo4j
+
+WORKDIR /neo4j
+
+RUN mkdir /neo4j/_build
+RUN mkdir -p /neo4j/config
+RUN mkdir /neo4j/lib
+
+COPY mix.exs /neo4j/mix.exs
+COPY mix.lock /neo4j/mix.lock
+
+RUN MIX_ENV=test mix do deps.get, deps.compile
+
+COPY config/config.exs /neo4j/config/config.exs
+COPY config/test.exs /neo4j/config/test.exs
+
+# COPY test/support/priv /neo4j/priv
+
+COPY lib /neo4j/lib
+COPY test /neo4j/test
+
+RUN MIX_ENV=test mix compile

@@ -1,0 +1,34 @@
+version: '2'
+services:
+
+################################################################################
+########################## test related containers #############################
+################################################################################
+
+  simple-repo-neo4j-db-test-s:
+    image: neo4j:3.3.0
+    container_name: simple-repo-neo4j-db-test-c
+    volumes:
+      - simple-repo-neo4j-db-data-test-v:/var/lib/postgresql/data
+    networks:
+      - "simple-repo-neo4j-n"
+
+  simple-repo-neo4j-test-s:
+    image: simple-repo-neo4j-test-s:test0.1.0
+    container_name: simple-repo-neo4j-test-c
+    build:
+      dockerfile: Dockerfile-test
+      context: .
+    command: mix do coveralls
+    environment:
+      - MIX_ENV=test
+    depends_on:
+      - simple-repo-neo4j-db-test-s
+    networks:
+      - "simple-repo-neo4j-n"
+
+volumes:
+  simple-repo-neo4j-db-data-test-v :
+
+networks:
+  simple-repo-neo4j-n:
