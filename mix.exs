@@ -36,7 +36,7 @@ defmodule SimpleRepoNeo4j.Mixfile do
 
   defp deps do
     [
-      {:bolt_sips, "~> 0.4.11"},
+      {:bolt_sips, git: "https://github.com/xofspades/bolt_sips"},
       {:excoveralls, "~> 0.7.5", only: :test}
     ]
   end
