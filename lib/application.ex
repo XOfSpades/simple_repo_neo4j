@@ -1,20 +1,5 @@
-defmodule SimpleRepoNeo4j.Application do
-  @moduledoc """
-  Documentation for SimpleRepoNeo4j.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SimpleRepoNeo4j.Application.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
+defmodule SimpleRepoNeo4j do
+  use Application
 
   def start(_type, _args) do
     import Supervisor.Spec, warn: false

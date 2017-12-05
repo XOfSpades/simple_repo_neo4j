@@ -7,6 +7,7 @@ defmodule SimpleRepoNeo4j.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       package: package(),
+      compilers: [:gettext] ++ Mix.compilers,
       elixirc_paths: elixirc_paths(Mix.env),
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -22,7 +23,7 @@ defmodule SimpleRepoNeo4j.Mixfile do
     # Specify extra applications you'll use from Erlang/Elixir
     [
       applications: [:logger, :bolt_sips],
-      mod: {SimpleRepoNeo4j.Application, []}
+      mod: {SimpleRepoNeo4j, []}
     ]
   end
 
@@ -39,7 +40,10 @@ defmodule SimpleRepoNeo4j.Mixfile do
 
   defp deps do
     [
+      # {:bolt_sips, "~> 0.3.2"},
       {:bolt_sips, "~> 0.4.11"},
+      {:gettext, "~> 0.11"},
+      {:ecto, "~> 2.1"},
       # {:bolt_sips, git: "https://github.com/xofspades/bolt_sips"},
       {:excoveralls, "~> 0.7.5", only: :test}
     ]
